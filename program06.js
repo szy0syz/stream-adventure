@@ -17,7 +17,11 @@ var concat = require('concat-stream');
 
 process.stdin.pipe(concat(function(body){
 	console.log(body.reverse().toString())
-	// var obj = JSON.parse(body);
-	// console.log('obj_:' + obj)
-	//this.push(Object.keys(obj).reverse().join('\n'));
 }))
+
+
+// var concat = require('concat-stream');
+//   process.stdin.pipe(concat(function (src) {
+//         var s = src.toString().split('').reverse().join('');      
+//         console.log(s);  
+//     }));
