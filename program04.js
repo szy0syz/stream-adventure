@@ -6,7 +6,7 @@ function write(buffer, encoding, next){
 }
 
 function end(){
-	//console.log('done_' + Date.now())
+	//console.log('done_' + Date.now());
 }
 
 var stream = through(write,end);
