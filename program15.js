@@ -56,14 +56,21 @@
 // //fs.createReadStream(process.argv[2]).pipe(parser);
 
 
-
+// 一个被加密、被压缩的tar文件将用pipe传输到process.stdin中；
+// 打印出tar包中文件的hash值+' '+path+filename+ '\n'
 var crypto = require('crypto');
 var tar = require('tar');
+// This provides bindings to Gzip/Gunzip, Deflate/Inflate, and DeflateRaw/InflateRaw classes. 
+//   Each class takes the same options, and is a readable/writable Stream.
 var zlib = require('zlib');
 var concat = require('concat-stream');
 
+//               Parse - 一定要大写！
 var parser = tar.Parse();
+
+//e=object，is a sttream too！！！
 parser.on('entry',function(e){
+	//这种写法比较好！不要写一堆code大括号包起！！
 	if(e.type !== 'File') return;
 
 	var h = crypto.createHash('md5',{encoding:'hex'});
