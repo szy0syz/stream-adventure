@@ -79,11 +79,16 @@ parser.on('entry',function(e){
 	}));
 });
 
+//加密方式
 var cipher = process.argv[2];
+//密匙
 var pw = process.argv[3];
 
 process.stdin
+	//No.1 解密
 	.pipe(crypto.createDecipher(cipher,pw))
+	//No.2 解压
 	.pipe(zlib.createGunzip())
+	//No.3 tar格式打开该流
 	.pipe(parser)
 ;
